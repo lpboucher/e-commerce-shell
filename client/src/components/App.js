@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import ProductList from './ProductList';
-
-const Products = () => <h2>Products</h2>;
+import ProductWrapper from './ProductWrapper';
 
 class App extends Component {
 
@@ -16,8 +14,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header></Header>
-            <ProductList></ProductList>
-            <Route exact path="/" component={Products}></Route>
+            <ProductWrapper></ProductWrapper>
           </div>
         </BrowserRouter>
       </div>
