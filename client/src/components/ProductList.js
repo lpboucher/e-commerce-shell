@@ -1,39 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchProducts } from '../actions';
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import ProductCard from './ProductCard';
 
-class ProductList extends Component {
-    constructor() {
-        super();
-        this.getProducts = this.getProducts.bind(this);
-    }
+const ProductList = ({products}) => {
+    return (
+        <Grid container>
+            { products.map(currentProduct => (
+                <Grid item>
+                    <ProductCard 
+                        key={currentProduct._id}
+                        title={currentProduct.title}
+                        description={currentProduct.description}
+                        image={currentProduct.imagePath}
+                        price={currentProduct.price}
+                    />
+                </Grid>
+            )) }
+        </Grid>
+    );
+};
 
-    componentDidMount() {
-       /* this.props.fetchProducts();*/
-      }
-
-    getProducts() {
-        this.props.fetchProducts();
-    }
-    
-    renderProducts() {
-        return this.props.products.map(product => {
-            return <p key={product._id}>{product.title}</p>
-        })
-    }
-    
-    render(){
-          return(
-            <div>
-              {this.renderProducts()}
-              <div onClick={this.getProducts}>Get it!</div>
-            </div>
-          )
-    }
-}
-
-function mapStateToProps({products}) {
-    return { products: products };
-}
-
-export default connect(mapStateToProps, {fetchProducts})(ProductList);
+export default ProductList;
