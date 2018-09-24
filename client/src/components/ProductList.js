@@ -6,9 +6,8 @@ const ProductList = ({products}) => {
     return (
         <Grid container>
             { products.map(currentProduct => (
-                <Grid item>
+                <Grid item key={currentProduct._id}>
                     <ProductCard 
-                        key={currentProduct._id}
                         title={currentProduct.title}
                         description={currentProduct.description}
                         image={currentProduct.imagePath}
