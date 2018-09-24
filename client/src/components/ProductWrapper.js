@@ -9,17 +9,8 @@ import AddIcon from '@material-ui/icons/Add';
 import ProductList from './ProductList';
 
 class ProductWrapper extends Component {
-    constructor() {
-        super();
-        this.getProducts = this.getProducts.bind(this);
-    }
-
     componentDidMount() {
-       /* this.props.fetchProducts();*/
-      }
-
-    getProducts() {
-        this.props.fetchProducts();
+       this.props.fetchProducts();
     }
     
     render(){
@@ -30,7 +21,7 @@ class ProductWrapper extends Component {
                     ) : (
                         <CircularProgress/>
                     )}
-                    <Button onClick={this.getProducts} variant="fab" color="primary" aria-label="Add">
+                    <Button variant="fab" color="primary" aria-label="Add">
                         <AddIcon />
                     </Button>
               </div>
@@ -38,8 +29,17 @@ class ProductWrapper extends Component {
     }
 }
 
-function mapStateToProps({products}) {
-    return { products: products };
+function mapStateToProps(state) {
+    return { 
+        products: state.products,
+        hasErrored: state.hasErrored
+    };
+};
+
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchProducts: () => dispatch(fetchProducts())
+    };
 }
 
-export default connect(mapStateToProps, {fetchProducts})(ProductWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductWrapper);
