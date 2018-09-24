@@ -13,6 +13,7 @@ const ProductCard = ({ title, image, price, description }) => {
           subheader={price}
         />
         <CardMedia
+          style={{height: 200}}
           image={image}
           title={title}
         />
