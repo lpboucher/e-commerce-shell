@@ -5,6 +5,7 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import ProductWrapper from './ProductWrapper';
+import Cart from './Cart';
 
 class App extends Component {
 
@@ -14,7 +15,8 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header></Header>
-            <ProductWrapper></ProductWrapper>
+            <Route exact path='/' component={ProductWrapper}/>
+            <Route path='/cart' component={Cart}/>
           </div>
         </BrowserRouter>
       </div>
